@@ -211,50 +211,26 @@
           During validation this is a waitlist—not a live charge. We’ll email you when your trial is ready.
           Deposits go to your Stripe. We never hold customer funds.
         </p>
-        <form id="waitlist-form" novalidate>
-          <input type="hidden" name="product" value="solo-pool-deposit-booking" />
-          <input type="hidden" name="intent" value="waitlist" />
-          <input type="hidden" name="source" value="landing" />
-
-          <div class="field">
-            <label for="email">Work email <span class="req">*</span></label>
-            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@yourpoolco.com" />
-            <div class="field-error" id="email-error">Enter a work email we can reply to.</div>
-          </div>
-
-          <div class="field">
-            <label for="name">Name or company <span class="req">*</span></label>
-            <input id="name" name="name" type="text" required autocomplete="organization" placeholder="Mike’s Pool Service / Jordan Lee" />
-            <div class="field-error" id="name-error">Add your name or company so we know who to set up.</div>
-          </div>
-
-          <div class="field">
-            <label for="phone">Phone <span class="hint">(optional)</span></label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Mobile OK — for a short validation call" />
-          </div>
-
-          <div class="field">
-            <label for="note">Optional note <span class="hint">(one line)</span></label>
-            <input id="note" name="note" type="text" maxlength="200" placeholder="Biggest no-show pain?" />
-          </div>
-
-          <button class="btn btn-primary btn-block" type="submit">Join waitlist</button>
-          <p class="cta-micro">No live Creem checkout yet. Client-side thanks only—nothing is charged.</p>
-        </form>
+        <p class="cta-micro" style="margin-bottom:1rem">Emails are saved to our waitlist (Airtable). No live Creem charge. Deposits stay on your Stripe later.</p>
+        <a class="btn btn-primary btn-block" id="waitlist-open" href="https://airtable.com/appPMLNN2CuzBQ71Y/pagaLs3BoLGdLYfA7/form?prefill_Intent=waitlist" target="_blank" rel="noopener">Join waitlist</a>
+        <p class="cta-micro" style="margin-top:0.75rem">Opens the signup form in a new tab. Prefer staying on-page? <a href="https://airtable.com/appPMLNN2CuzBQ71Y/pagaLs3BoLGdLYfA7/form?prefill_Intent=waitlist" target="_blank" rel="noopener">Open form</a>.</p>
+        <div class="form-embed-wrap" style="margin-top:1.25rem;border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#fff">
+          <iframe
+            class="airtable-embed"
+            src="https://airtable.com/appPMLNN2CuzBQ71Y/pagaLs3BoLGdLYfA7/form?prefill_Intent=waitlist"
+            frameborder="0"
+            onmousewheel=""
+            width="100%"
+            height="720"
+            style="background:transparent;border:1px solid #ccc;display:block"
+            title="Solo Pool Deposit Booking waitlist form"
+          ></iframe>
+        </div>
       </div>
 
-      <div class="thanks" id="thanks" role="status" aria-live="polite">
+      <div class="thanks" id="thanks" role="status" aria-live="polite" hidden>
         <h3>You’re on the list.</h3>
-        <p>
-          Thanks—we’re opening Solo Pool Deposit Booking to a small group of solo pool techs first.
-          We’ll email you when your trial is ready.
-        </p>
-        <p class="reinforce">
-          Reminder: customer deposits always go to <strong>your</strong> Stripe. The $29/mo is only for the booking page + calendar + email reminders.
-        </p>
-        <p>
-          Want to talk sooner? Reply to the confirmation email with your city and whether you do open/close, green-to-clean, or both.
-        </p>
+        <p>Thanks—after you submit the form, you’re on the early-access list.</p>
         <p style="margin-top:1rem"><a class="btn btn-secondary" href="mocks.html">Preview the customer booking flow</a></p>
       </div>
     </div>
@@ -273,51 +249,10 @@
         SaaS subscription billed separately. Not affiliated with Stripe, Google, Jobber, or Housecall Pro.
         Pool-tech templates are starting points—you remain responsible for local licensing, advertising, and cancel policies.
       </p>
-      <p class="meta">Preview build · Creem / domain / Stripe Connect still TBD · Sources: landing/copy.md · landing/fake-door.md</p>
+      <p class="meta">Preview · Waitlist via Airtable · Creem $29/mo & Stripe/Connect still pending · No live payments</p>
     </div>
   </footer>
 
-  <script>
-    (function () {
-      var form = document.getElementById("waitlist-form");
-      var card = document.getElementById("waitlist-form-card");
-      var thanks = document.getElementById("thanks");
-      var email = document.getElementById("email");
-      var name = document.getElementById("name");
-      var emailErr = document.getElementById("email-error");
-      var nameErr = document.getElementById("name-error");
-
-      function validEmail(v) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || "").trim());
-      }
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var ok = true;
-
-        email.classList.remove("invalid");
-        name.classList.remove("invalid");
-        emailErr.classList.remove("show");
-        nameErr.classList.remove("show");
-
-        if (!validEmail(email.value)) {
-          email.classList.add("invalid");
-          emailErr.classList.add("show");
-          ok = false;
-        }
-        if (!String(name.value || "").trim()) {
-          name.classList.add("invalid");
-          nameErr.classList.add("show");
-          ok = false;
-        }
-        if (!ok) return;
-
-        // Client-side only — no backend, no Creem.
-        card.style.display = "none";
-        thanks.classList.add("show");
-        thanks.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    })();
-  </script>
+  <!-- Waitlist collects via published Airtable form; no Creem / Stripe payment. -->
 </body>
 </html>
