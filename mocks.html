@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customer flow mocks — Solo Pool Deposit Booking</title>
+  <meta name="description" content="Wireframe screens: pick slot → pay deposit on tech Stripe → confirmed (GCal + email + T-24h)." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="mocks-page">
+  <div class="mocks-toolbar">
+    <div class="inner">
+      <a class="brand" href="index.html">
+        <strong>Solo Pool Deposit Booking</strong>
+        <span>Customer flow · 3 wireframes · not Jobber</span>
+      </a>
+      <div class="mocks-tabs" role="tablist" aria-label="Mock screens">
+        <button type="button" class="active" data-mock="1" role="tab" aria-selected="true">1 · Pick slot</button>
+        <button type="button" data-mock="2" role="tab" aria-selected="false">2 · Pay deposit</button>
+        <button type="button" data-mock="3" role="tab" aria-selected="false">3 · Confirmed</button>
+      </div>
+      <div class="mocks-nav-btns">
+        <button type="button" class="btn btn-secondary" id="prev-btn">← Prev</button>
+        <button type="button" class="btn btn-primary" id="next-btn">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mock 1: Pick slot -->
+  <div class="phone-frame active" id="mock-1" data-step="1">
+    <div class="wire-label">Wireframe · Public booking page · book.yourpoolco.com</div>
+    <div class="phone-status">book.yourpoolco.com/book</div>
+    <div class="mock-header">
+      <div class="biz">ClearWater Pool Service</div>
+      <p class="tagline">Openings · green-to-clean · equipment checks — Southwest Phoenix area</p>
+      <span class="chip">Deposit required to hold your slot</span>
+    </div>
+    <div class="mock-body">
+      <h2>Book a visit</h2>
+      <p class="area-note" style="margin-top:0">Pick the service that matches what you need. We’ll confirm details by email.</p>
+
+      <div class="mock-label">Service</div>
+      <div class="service-opts">
+        <div class="service-opt">Open pool for season<div class="dur">About 1.5 hours on site</div></div>
+        <div class="service-opt selected">Green-to-clean<div class="dur">About 2 hours on site</div></div>
+        <div class="service-opt">Equipment checkup<div class="dur">About 1 hour on site</div></div>
+        <div class="service-opt">Filter clean<div class="dur">About 1 hour on site</div></div>
+      </div>
+      <p class="area-note">We serve ZIP 850xx–852xx. Outside that? Text us before booking.</p>
+
+      <div class="mock-label">Date</div>
+      <div class="slot" style="display:inline-block;margin-bottom:0.4rem">Tue Mar 10 ▾</div>
+
+      <div class="mock-label">Available times</div>
+      <div class="slot-row">
+        <div class="slot">8:00 AM</div>
+        <div class="slot selected">10:30 AM</div>
+        <div class="slot">1:00 PM</div>
+      </div>
+      <div class="selected-chip">Tue Mar 10 · 10:30 AM · Green-to-clean (~2 hr)</div>
+
+      <div class="mock-label">Your details</div>
+      <div class="mock-fields">
+        <div class="mf"><strong>Full name</strong> Jane Rivera</div>
+        <div class="mf"><strong>Mobile</strong> For day-of access notes</div>
+        <div class="mf"><strong>Email</strong> Confirmation + reminder</div>
+        <div class="mf"><strong>Gate / access note</strong> Gate code, dog, HOA (optional)</div>
+        <div class="mf"><strong>Pool address</strong> Service address (not billing)</div>
+      </div>
+
+      <p style="margin:1.1rem 0 0">
+        <a class="btn btn-primary btn-block" href="#" id="goto-2">Continue to deposit →</a>
+      </p>
+      <p class="mock-footer-note">
+        Deposits are processed securely. Your card is charged a <strong>booking deposit</strong> to hold the time—not the full job total unless stated.
+      </p>
+    </div>
+  </div>
+
+  <!-- Mock 2: Pay deposit -->
+  <div class="phone-frame" id="mock-2" data-step="2">
+    <div class="wire-label">Wireframe · Deposit summary → tech’s Stripe Checkout (not Creem)</div>
+    <div class="phone-status">book.yourpoolco.com/book/deposit</div>
+    <div class="mock-header">
+      <div class="biz">ClearWater Pool Service</div>
+      <p class="tagline">Hold your slot with a deposit</p>
+    </div>
+    <div class="mock-body">
+      <h2>Hold your slot with a deposit</h2>
+      <div class="summary-rows">
+        <div class="row"><span>Service</span><span>Green-to-clean</span></div>
+        <div class="row"><span>When</span><span>Tue Mar 10 · 10:30 AM (≈2 hr)</span></div>
+        <div class="row"><span>Where</span><span>1842 W Desert Bloom Rd, Phoenix AZ</span></div>
+        <div class="row deposit"><span>Deposit due today</span><span>$75.00</span></div>
+        <div class="row"><span>Remaining balance</span><span>Due after service (MVP = deposit only)</span></div>
+      </div>
+
+      <div class="policy-box">
+        <strong style="color:var(--ink)">Cancel policy</strong><br />
+        Cancel or reschedule at least 24 hours before your slot for a full deposit refund.
+        Late cancels / no-shows: deposit may be kept. Questions? Reply to your confirmation email or text the number in the email.
+      </div>
+
+      <a class="btn btn-primary btn-block" href="#" id="goto-3">Pay deposit securely →</a>
+      <p style="margin:0.65rem 0 0;text-align:center">
+        <a href="#" id="back-1" style="font-size:0.9rem;font-weight:600">← Back to change time</a>
+      </p>
+      <p class="mock-footer-note">
+        You’ll complete payment on Stripe. Charged by <strong>ClearWater Pool Service</strong>—not a marketplace middleman.
+      </p>
+
+      <div class="email-preview" style="margin-top:1.15rem">
+        <strong>Stripe Checkout (conceptual · hosted by Stripe)</strong>
+        Line item: Booking deposit — Green-to-clean · Mar 10 10:30 AM<br />
+        Amount: $75.00 USD · Merchant: tech’s Stripe business name<br />
+        Success → confirmed · Cancel → “Deposit not completed—slot not held.”
+      </div>
+    </div>
+  </div>
+
+  <!-- Mock 3: Confirmed -->
+  <div class="phone-frame" id="mock-3" data-step="3">
+    <div class="wire-label">Wireframe · Confirmed · GCal + email + T-24h</div>
+    <div class="phone-status">book.yourpoolco.com/book/confirmed?ref=bk_…</div>
+    <div class="mock-header">
+      <div class="biz">ClearWater Pool Service</div>
+      <p class="tagline">You’re booked</p>
+    </div>
+    <div class="mock-body">
+      <h2>You’re booked—deposit received.</h2>
+      <div class="status-banner">Confirmed · Deposit $75 paid</div>
+
+      <div class="confirm-blocks">
+        <div class="block"><div class="k">Service</div><div class="v">Green-to-clean</div></div>
+        <div class="block"><div class="k">When</div><div class="v">Tuesday, Mar 10 · 10:30 AM</div></div>
+        <div class="block"><div class="k">Where</div><div class="v">1842 W Desert Bloom Rd, Phoenix AZ</div></div>
+        <div class="block"><div class="k">What next</div><div class="v" style="font-weight:500">Check your email for details. We’ll also remind you about <strong>24 hours before</strong>.</div></div>
+        <div class="block"><div class="k">Calendar</div><div class="v" style="font-weight:500">Added to ClearWater’s Google Calendar</div></div>
+        <div class="block"><div class="k">Booking ID</div><div class="v">BK-10482</div></div>
+      </div>
+
+      <p style="margin:1rem 0 0">
+        <a class="btn btn-primary btn-block" href="index.html">Done / Back to homepage</a>
+      </p>
+      <p class="mock-footer-note">
+        Need to change plans? Use the link in your confirmation email or text us. Policy: 24-hour notice for full deposit refund.
+      </p>
+
+      <div class="email-preview">
+        <strong>Confirmation email (customer)</strong>
+        From: ClearWater Pool Service · Subject: Deposit received — Tue Mar 10 · 10:30 AM<br />
+        Thanks · service/time/address · deposit $75 · 24h cancel policy · day-of text · T-24h reminder coming
+      </div>
+      <div class="gcal-preview">
+        <strong>Google Calendar (tech)</strong>
+        Title: Green-to-clean — Jane Rivera · Mar 10 10:30–12:30<br />
+        Location: 1842 W Desert Bloom Rd · Desc: Deposit $75 paid · BK-10482 · gate note · email
+      </div>
+      <div class="t24-preview">
+        <strong>T-24h reminder email</strong>
+        Subject: Reminder — pool visit tomorrow · 10:30 AM<br />
+        Tomorrow’s green-to-clean at [address]. Deposit already paid. Need to reschedule? Reply now.<br />
+        SMS = not in MVP (L2 later).
+      </div>
+    </div>
+  </div>
+
+  <p class="mocks-legend">
+    Sample business: ClearWater Pool Service · Sample deposit $75 · Sources: <code>landing/mocks.md</code><br />
+    Out of scope: quotes · dispatch · multi-tech · CRM · us holding escrow
+  </p>
+
+  <script>
+    (function () {
+      var current = 1;
+      var total = 3;
+      var tabs = document.querySelectorAll(".mocks-tabs button");
+      var frames = [
+        document.getElementById("mock-1"),
+        document.getElementById("mock-2"),
+        document.getElementById("mock-3")
+      ];
+      var prevBtn = document.getElementById("prev-btn");
+      var nextBtn = document.getElementById("next-btn");
+
+      function show(n) {
+        current = Math.max(1, Math.min(total, n));
+        frames.forEach(function (f, i) {
+          f.classList.toggle("active", i + 1 === current);
+        });
+        tabs.forEach(function (t) {
+          var on = Number(t.getAttribute("data-mock")) === current;
+          t.classList.toggle("active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        prevBtn.disabled = current === 1;
+        nextBtn.textContent = current === total ? "Done" : "Next →";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      tabs.forEach(function (t) {
+        t.addEventListener("click", function () {
+          show(Number(t.getAttribute("data-mock")));
+        });
+      });
+      prevBtn.addEventListener("click", function () { show(current - 1); });
+      nextBtn.addEventListener("click", function () {
+        if (current === total) {
+          window.location.href = "index.html";
+          return;
+        }
+        show(current + 1);
+      });
+
+      var g2 = document.getElementById("goto-2");
+      var g3 = document.getElementById("goto-3");
+      var b1 = document.getElementById("back-1");
+      if (g2) g2.addEventListener("click", function (e) { e.preventDefault(); show(2); });
+      if (g3) g3.addEventListener("click", function (e) { e.preventDefault(); show(3); });
+      if (b1) b1.addEventListener("click", function (e) { e.preventDefault(); show(1); });
+
+      show(1);
+    })();
+  </script>
+</body>
+</html>
