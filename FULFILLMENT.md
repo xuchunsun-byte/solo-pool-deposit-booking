@@ -1,6 +1,6 @@
 # Fulfillment — Solo Pool Deposit Booking
 
-Updated: 2026-11-12 20:45 (Asia/Shanghai)
+Updated: 2026-11-12 20:35 (Asia/Shanghai)
 
 This is the first fulfillable slice of the booking tool. It exists so a paying tech can actually get access after the live Creem $29/mo product is paid. It is **not** yet fully live: webhook dashboard wiring, a real email API key, and a durable public HTTPS origin are still missing.
 
@@ -25,7 +25,7 @@ This is the first fulfillable slice of the booking tool. It exists so a paying t
 5. After a booking: confirmation email, **ICS download**, **Google Calendar template link**. Full Google Calendar OAuth is stubbed (env placeholders only; no credentials). T-24h reminder: in-process loop every 60s, plus `POST /internal/cron/reminders` for an external cron.
 6. **Thanks / cancel pages**
    - App: `GET /thanks` and `GET /cancelled` (query params such as `?session=` are ignored and do not break the page).
-   - Static GitHub Pages copies (for Creem Success / Cancel URLs even before the app has a durable origin):
+   - Static GitHub Pages copies, **live** as of 2026-11-12 20:32 (Asia/Shanghai) (for Creem Success / Cancel URLs even before the app has a durable origin):
      - https://xuchunsun-byte.github.io/solo-pool-deposit-booking/thanks.html
      - https://xuchunsun-byte.github.io/solo-pool-deposit-booking/cancelled.html
    - Neither static page includes the Creem checkout link.
@@ -121,7 +121,7 @@ Without `RESEND_API_KEY` or SMTP settings, the email is **not** delivered to a r
 
 | Blocker | Needs a person? | Notes |
 |---------|-----------------|-------|
-| Durable public HTTPS origin for the app | Yes | GitHub Pages cannot run this webhook/app. A free host (Render / Fly / Railway / etc.) or a long-lived tunnel requires an account login we must not invent. A temporary tunnel, if started, is not a production deploy. |
+| Durable public HTTPS origin for the app | Yes | GitHub Pages cannot run this webhook/app (static only). Tried a Cloudflare quick tunnel (no account) from this box: a trycloudflare.com hostname was issued, but the process could not connect to the Cloudflare edge (`TLS handshake with edge error: EOF`; precheck: QUIC failed, HTTP/2 “blocked or unreachable”). The hostname returned HTTP 530. `ssh` to localhost.run was closed by the egress proxy (198.18.0.1:22). Paid/account hosts (Render / Fly / Railway / Vercel) would need a user login/OAuth click, which was not started. Local app works at `http://127.0.0.1:3000`. |
 | `CREEM_WEBHOOK_SECRET` | Yes | Not available in this environment. Endpoint is implemented; dashboard is not pointed. |
 | Email provider (`RESEND_API_KEY` or SMTP) + verified `EMAIL_FROM` | Yes | Access / confirmation / T-24h mail will only log locally until this is set. |
 | Creem Success / Cancel URLs in the live product | Yes | Static Pages URLs are ready; the app `/thanks` URL can be used once there is a durable origin. Still on Creem defaults until someone changes the product. |
