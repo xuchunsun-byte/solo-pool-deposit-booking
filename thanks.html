@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thanks for subscribing — Solo Pool Deposit Booking</title>
-  <meta name="description" content="Your $29/mo Solo Pool Deposit Booking plan. Check your email for the admin access link." />
+  <title>Thanks — get your access — Solo Pool Deposit Booking</title>
+  <meta name="description" content="Thanks for subscribing to Solo Pool Deposit Booking. Submit the access form so we can send your public booking page link." />
   <link rel="stylesheet" href="styles.css" />
   <style>
     .status-page { padding: 2.5rem 0 3.5rem; }
-    .status-page .thanks { display: block; max-width: 36rem; }
+    .status-page .thanks { display: block; max-width: 40rem; }
     .status-page .form-card { margin-top: 1.5rem; }
+    .form-embed-wrap { margin-top: 1.25rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,.08); background: #fff; }
   </style>
 </head>
 <body>
@@ -29,13 +30,32 @@
   <main class="status-page">
     <div class="wrap">
       <div class="thanks show" role="status">
-        <h1>Thanks for subscribing</h1>
-        <p>Your <strong>$29/mo</strong> Solo Pool Deposit Booking plan is active once payment is confirmed.</p>
-        <p class="reinforce">Check your inbox for “Your Solo Pool Deposit Booking access.” That email has your private admin link to set up your booking page.</p>
-        <p>Next steps (about 10 minutes): set your business name, service, hours, deposit amount, and cancel policy, then copy your public booking link into texts or Google Business Profile.</p>
-        <p>Customer deposits go to <strong>your</strong> Stripe account. We never hold or escrow customer funds. This page is a confirmation only — it does not collect a card or start another charge.</p>
-        <p>Any checkout reference in the address bar (for example a session id) can be ignored; it is not needed to finish setup.</p>
+        <h1>Thanks — let’s get you access</h1>
+        <p>Your <strong>$29/mo</strong> Solo Pool Deposit Booking subscription starts once payment is confirmed.</p>
+        <p class="reinforce">To get your public booking page, submit the short form below with the <strong>email you used at checkout</strong>. We’ll email your booking-page link to that address, usually within one business day.</p>
+        <p>What you get first: a public page your customers can use to pick a slot, plus an ICS / Google Calendar add link after they book. Paste your own Stripe Payment Link when you’re ready so deposits settle to <strong>your</strong> Stripe. We never hold or escrow customer funds.</p>
+        <p>If you just arrived from checkout, you don’t need anything in the address bar (for example a session id). This page does not collect a card or start another charge.</p>
       </div>
+
+      <div class="form-card" id="access-form-card">
+        <h2>Request your booking page</h2>
+        <p class="form-lead">Business name and checkout email are enough. You can add a Stripe Payment Link later if you don’t have one yet.</p>
+        <a class="btn btn-primary btn-block" href="https://airtable.com/appPMLNN2CuzBQ71Y/pag5o5zl8Pe1IfFMv/form" target="_blank" rel="noopener">Open the access form</a>
+        <p class="cta-micro" style="margin-top:0.75rem">Opens in a new tab. Prefer staying on this page? Use the form below.</p>
+        <div class="form-embed-wrap">
+          <iframe
+            class="airtable-embed"
+            src="https://airtable.com/appPMLNN2CuzBQ71Y/pag5o5zl8Pe1IfFMv/form"
+            frameborder="0"
+            onmousewheel=""
+            width="100%"
+            height="720"
+            style="background:transparent;border:1px solid #ccc;display:block"
+            title="Solo Pool Deposit Booking access form"
+          ></iframe>
+        </div>
+      </div>
+
       <p style="margin-top:1.25rem"><a class="btn btn-secondary" href="index.html">Back to the product page</a></p>
     </div>
   </main>
