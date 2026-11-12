@@ -1,0 +1,16 @@
+<section class="page">
+  <div class="wrap narrow">
+    <div class="form-card">
+      <h1>Log in to your admin</h1>
+      <p class="form-lead">We’ll email a one-time link to an account with an active $29/mo subscription. The link signs you in — no password.</p>
+      {{{flash}}}
+      <form method="post" action="/login">
+        <div class="field">
+          <label for="email">Email you used at checkout</label>
+          <input id="email" name="email" type="email" autocomplete="email" required value="{{email}}" />
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Email me a login link</button>
+      </form>
+    </div>
+  </div>
+</section>

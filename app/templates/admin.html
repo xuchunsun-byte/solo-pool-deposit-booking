@@ -1,0 +1,76 @@
+<section class="page">
+  <div class="wrap">
+    <h1>Admin{{{business_suffix}}}</h1>
+    <p class="section-lead">Signed in as {{tech.email}}.</p>
+    {{{flash}}}
+
+    <div class="status-row">
+      <span class="pill">Subscription: {{paid_label}}</span>
+      <span class="pill">Deposits: tech’s Stripe (not escrow)</span>
+    </div>
+
+    {{{public_link_block}}}
+
+    <form method="post" action="/admin" class="form-card admin-form">
+      <h2>Business &amp; service</h2>
+      <div class="field">
+        <label for="business_name">Business name</label>
+        <input id="business_name" name="business_name" required value="{{tech.business_name}}" />
+      </div>
+      <div class="field">
+        <label for="slug">Public URL slug</label>
+        <input id="slug" name="slug" pattern="[a-z0-9-]{3,40}" value="{{tech.slug}}" />
+        <p class="hint">Letters, numbers, and dashes. Becomes /b/your-slug</p>
+      </div>
+      <div class="field">
+        <label for="service_name">Service</label>
+        <input id="service_name" name="service_name" required value="{{tech.service_name}}" />
+      </div>
+      <div class="field">
+        <label for="duration_minutes">Duration (minutes)</label>
+        <input id="duration_minutes" name="duration_minutes" type="number" min="30" max="720" step="15" required value="{{tech.duration_minutes}}" />
+      </div>
+      <div class="field">
+        <label for="service_area">Service area</label>
+        <input id="service_area" name="service_area" value="{{tech.service_area}}" placeholder="North Phoenix, Scottsdale, …" />
+      </div>
+      <div class="field">
+        <label for="timezone">Time zone</label>
+        <input id="timezone" name="timezone" value="{{tech.timezone}}" placeholder="America/New_York" />
+      </div>
+
+      <h2>Weekly hours</h2>
+      <p class="form-lead">Open slots are generated from these hours and your duration. Already-booked times are hidden.</p>
+      {{{hours_fields}}}
+
+      <h2>Deposit</h2>
+      <p class="form-lead">Shown on your public page. If you paste a Stripe Payment Link, customers are sent there to pay you. We never collect card numbers or hold funds. Stripe Connect is not in this version — a pasted Payment Link is enough.</p>
+      <div class="field">
+        <label for="deposit_type">Deposit type</label>
+        <select id="deposit_type" name="deposit_type">
+          {{{deposit_type_options}}}
+        </select>
+      </div>
+      <div class="field">
+        <label for="deposit_amount">Deposit amount</label>
+        <input id="deposit_amount" name="deposit_amount" type="number" min="0" step="1" required value="{{tech.deposit_amount}}" />
+        <p class="hint">Dollars if fixed, percent if percent (for example 50 or 20).</p>
+      </div>
+      <div class="field">
+        <label for="stripe_payment_link">Your Stripe Payment Link or Checkout URL <span class="hint">(optional)</span></label>
+        <input id="stripe_payment_link" name="stripe_payment_link" type="url" value="{{tech.stripe_payment_link}}" placeholder="https://buy.stripe.com/…" />
+      </div>
+      <div class="field">
+        <label for="cancel_policy">Cancel / reschedule policy (English)</label>
+        <textarea id="cancel_policy" name="cancel_policy" rows="7">{{tech.cancel_policy}}</textarea>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Save settings</button>
+    </form>
+
+    <div class="form-card" style="max-width:100%;margin-top:1.5rem">
+      <h2>Upcoming bookings</h2>
+      {{{bookings_table}}}
+    </div>
+  </div>
+</section>

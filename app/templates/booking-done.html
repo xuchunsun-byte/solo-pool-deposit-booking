@@ -1,0 +1,15 @@
+<section class="page">
+  <div class="wrap narrow">
+    <div class="thanks show">
+      <h1>You’re booked</h1>
+      <p>Thanks, {{booking.customer_name}}. {{tech.business_name}} has {{tech.service_name}} on <strong>{{when_label}}</strong>.</p>
+      <p>{{deposit_note}}</p>
+      <p>We emailed a confirmation to {{booking.customer_email}}. You’ll get another reminder about 24 hours before.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="{{ics_url}}">Download calendar (.ics)</a>
+        <a class="btn btn-secondary" href="{{gcal_url}}" target="_blank" rel="noopener">Add to Google Calendar</a>
+      </div>
+      {{{stripe_block}}}
+    </div>
+  </div>
+</section>

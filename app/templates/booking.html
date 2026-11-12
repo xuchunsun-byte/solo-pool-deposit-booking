@@ -1,0 +1,43 @@
+<section class="page">
+  <div class="wrap narrow">
+    <div class="pill">Public booking page</div>
+    <h1>{{tech.business_name}}</h1>
+    <p class="subhead">{{tech.service_name}} · {{duration_label}} · {{tech.service_area}}</p>
+    <p class="cta-micro">Pick a slot below. Deposits, when configured, are paid on this technician’s own Stripe account. Solo Pool Deposit Booking never holds or escrows customer funds and never asks for your card number.</p>
+
+    {{{flash}}}
+    {{{deposit_block}}}
+
+    <form method="post" action="/b/{{tech.slug}}" class="form-card">
+      <h2>Request a slot</h2>
+      <div class="field">
+        <label for="slot">Open slot</label>
+        <select id="slot" name="slot" required>
+          {{{slot_options}}}
+        </select>
+      </div>
+      <div class="field">
+        <label for="customer_name">Your name</label>
+        <input id="customer_name" name="customer_name" required autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="customer_email">Email</label>
+        <input id="customer_email" name="customer_email" type="email" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="customer_phone">Phone <span class="hint">(optional)</span></label>
+        <input id="customer_phone" name="customer_phone" type="tel" autocomplete="tel" />
+      </div>
+      <div class="field">
+        <label for="notes">Notes for the technician <span class="hint">(optional)</span></label>
+        <textarea id="notes" name="notes" rows="3"></textarea>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">{{submit_label}}</button>
+    </form>
+
+    <div class="form-card" style="margin-top:1.5rem">
+      <h2>Cancel / reschedule policy</h2>
+      <pre class="policy">{{tech.cancel_policy}}</pre>
+    </div>
+  </div>
+</section>

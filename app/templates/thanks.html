@@ -1,0 +1,22 @@
+<section class="page">
+  <div class="wrap narrow">
+    <div class="thanks show">
+      <h1>Thanks for subscribing</h1>
+      <p>Your $29/mo Solo Pool Deposit Booking plan is active once payment is confirmed.</p>
+      <p class="reinforce">Check your inbox for “Your Solo Pool Deposit Booking access.” That email has your private admin link.</p>
+      <p>Next: set your service, hours, and deposit rules, then copy your public booking page into texts or Google Business Profile. Customer deposits go to <strong>your</strong> Stripe — we never hold them.</p>
+    </div>
+    <div class="form-card" style="margin-top:1.5rem">
+      <h2>Need the access link again?</h2>
+      <p class="form-lead">Use the same email you paid with. We’ll send a fresh login link if the subscription is on file.</p>
+      {{{flash}}}
+      <form method="post" action="/login">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Email me a login link</button>
+      </form>
+    </div>
+  </div>
+</section>

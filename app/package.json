@@ -1,0 +1,19 @@
+{
+  "name": "solo-pool-deposit-booking",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimal fulfillment app for Solo Pool Deposit Booking (tech SaaS via Creem; customer deposits on the tech's own Stripe).",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node scripts/verify.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemailer": "^7.0.10"
+  }
+}
